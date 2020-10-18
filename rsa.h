@@ -29,12 +29,24 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*/
 
 #ifndef RSA_H_
 #define RSA_H_
+#include "stdint.h"
 
-
-
-void mpi_powm65537(uint16_t* m, const uint16_t* n);
+#ifdef __cplusplus
+extern "C" {
+#endif
 // MPI single-precision number size, in 16-bit words
 #define MPI_NUMBER_SIZE 128
 
+/*
+ * Single modulo exponentiation M^65537 mod N (mpi^65537 mod mpi)
+ * *m = (*m^65537) % n
+ * Modulus's MSW must be >= 0x8000
+ */
+void mpi_powm65537(uint16_t* m, const uint16_t* n);
+
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* RSA_H_ */
